@@ -32,6 +32,33 @@ public:
         }
     }
 
+    void deletefromheap(){
+        if(size == 0){
+            return ;
+        }
+
+        arr[1] = arr[size];
+        size--;
+
+        int i = 1;
+        while(i < size){
+            int left = i*2;
+            int right = i*2+1;
+
+            if(left < size && arr[i] < arr[left]){
+                swap(arr[i], arr[left]);
+                i = left;
+            }
+            else if(right < size && arr[i] < arr[right]){
+                swap(arr[i], arr[right]);
+                i = right;
+            }
+            else{
+                return;
+            }
+        }
+    }
+
     void print(){
         if(size==0){
             cout<<"No element present in Heap\n";
@@ -40,6 +67,7 @@ public:
         for(int i=1 ; i<=size; i++){
             cout<<arr[i]<<" ";
         }
+        cout<<endl;
     }
 
 };
@@ -49,6 +77,10 @@ int main(){
     h.insert(10);
     h.insert(20);
     h.insert(30);
+
+    h.print();
+
+    h.deletefromheap();
 
     h.print();
 
