@@ -72,6 +72,32 @@ public:
 
 };
 
+void heapify(vector<int> & arr, int n, int i){
+    int largest = i;
+    int left = 2*i+1;
+    int right = 2*i+2;
+
+    if(left < n && arr[left] > arr[largest]){
+        largest = left;
+    }
+    if(right < n && arr[right] > arr[largest]){
+        largest = right;
+    }
+
+    if(largest != i){
+        swap(arr[i], arr[largest]);
+        heapify(arr, n, largest);
+    }
+}
+
+void arrPrint(vector<int> & arr){
+    for(int i=0; i<arr.size(); i++){
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+}
+
+
 int main(){
     heap h;
     h.insert(10);
@@ -84,7 +110,16 @@ int main(){
 
     h.print();
 
+    vector<int> arr = {10, 20, 30, 40, 50, 60, 70};
+    int n = arr.size();
 
+    arrPrint(arr);
+
+    for(int i=n/2-1; i>=0; i--){
+        heapify(arr, n, i);
+    }
+
+    arrPrint(arr);
 
 
     return 0;
