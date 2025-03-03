@@ -97,6 +97,17 @@ void arrPrint(vector<int> & arr){
     cout<<endl;
 }
 
+void heapSort(vector<int> & arr, int n){
+    for(int i=n/2-1; i>=0; i--){
+        heapify(arr, n, i);
+    }
+
+    for(int i = n-1; i>0; i--){
+        swap(arr[i], arr[0]);
+        heapify(arr, i, 0);
+    }
+}
+
 
 int main(){
     heap h;
@@ -118,6 +129,11 @@ int main(){
     for(int i=n/2-1; i>=0; i--){
         heapify(arr, n, i);
     }
+
+
+    vector<int> arr = {60, 44, 23, 10, 12, 20, 30, 40, 50, 70};
+    int n = arr.size();
+    heapSort(arr, n);
 
     arrPrint(arr);
 
